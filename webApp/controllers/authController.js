@@ -42,7 +42,8 @@ module.exports.register = async (req, res) => {
         email: email,
       },
     });
-  } catch (error) {
+  } 
+  catch (error) {
     console.error('Error during registration:', error.message);
     res.status(500).send('Internal Server Error');
   }

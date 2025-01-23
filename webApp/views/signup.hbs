@@ -195,7 +195,7 @@
 
             <p class="mt-4 text-sm text-gray-500 sm:mt-0">
               Already have an account?
-              <a href="/login.html" class="text-gray-700 underline">Log in</a>.
+              <a href="/signin" class="text-gray-700 underline">Log in</a>.
             </p>
           </div>
         </form>
@@ -248,7 +248,9 @@
 
           if (response.ok) {
             alert('Registration successful! Redirecting to dashboard...');
-          } else {
+            window.location.href = '/';
+          } 
+          else {
             const errorText = await response.text();
             alert('Registration failed: ' + errorText);
           }
