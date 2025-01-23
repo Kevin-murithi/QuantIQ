@@ -14,7 +14,8 @@ router.get ("/signup", loadPages.signupPage);
 router.get ("/login", loadPages.loginPage);
 
 // Other (CRUD/auth) routes
-router.post('/register', authController.register);
-router.post('/login', authController.login);
+
+router.post('/register', jsonParser, authController.register);
+router.post('/login', jsonParser, authController.login);
 
 module.exports = router;
