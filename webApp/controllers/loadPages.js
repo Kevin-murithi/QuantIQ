@@ -1,0 +1,11 @@
+module.exports.landingPage = (_req, res) => {
+  res.render('landingpage');
+}
+
+module.exports.signupPage = (_req, res) => {
+  res.render('signup');
+}
+
+module.exports.loginPage = (_req, res) => {
+  res.render('login');
+}
