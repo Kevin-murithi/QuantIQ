@@ -71,14 +71,12 @@ app.engine('.hbs', handlebars.engine);
 app.set('view engine', '.hbs');
 app.set('views', path.join(__dirname, 'views'));
 
-
 //Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(authRoutes);
 app.use(cors(
-  {origin: 'http://localhost:5500'}
 ));
 app.use(morgan("dev"));
 

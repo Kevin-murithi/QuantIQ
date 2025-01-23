@@ -6,16 +6,16 @@ const JWT_SECRET = 'your_secret_key';
 
 module.exports.register = async (req, res) => {
   try {
-    const { username, email, password } = req.body;
+    const { firstname, lastname, email, password, companyname, } = req.body;
 
-    if (!username || !email || !password) {
+    if (!firstname ||!lastname ||!email ||!password ||!companyname ) {
       return res.status(400).send('All fields are required');
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const sql = 'INSERT INTO Users (username, email, password) VALUES (?, ?, ?)';
-    const values = [username, email, hashedPassword];
+    const sql = 'INSERT INTO Users (firstname, lastname, email, password, companyname) VALUES (?, ?, ?, ?, ?)';
+    const values = [firstname, lastname, email, hashedPassword, companyname ];
 
     // Insert the user into the database and get the insertId (user_id)
     const [result] = await db.query(sql, values);  // Use db.query for promise-based queries
@@ -23,7 +23,8 @@ module.exports.register = async (req, res) => {
 
     const payload = {
       user_id: user_id,
-      username: username,
+      firstname: firstname,
+      lastname: lastname,
       email: email,
     };
 
@@ -36,7 +37,8 @@ module.exports.register = async (req, res) => {
       token: token,
       user: {
         user_id: user_id,
-        username: username,
+        firstname: firstname,
+        lastname: lastname,
         email: email,
       },
     });

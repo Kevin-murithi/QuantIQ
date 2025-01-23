@@ -49,7 +49,7 @@
           Join QuantIQ today and unlock powerful insights for smarter financial decisions—tailored for professionals in data, finance, and analytics.
         </p>
 
-        <form action="/signup" method="POST" class="mt-8 grid grid-cols-6 gap-6" onsubmit="return validateForm()">
+        <form action="/register" method="POST" class="mt-8 grid grid-cols-6 gap-6" onsubmit="return validateForm()" id="registerform">
           <div class="col-span-6 sm:col-span-3">
             <label for="FirstName" class="block text-sm font-medium text-gray-700">
               First Name
@@ -57,7 +57,7 @@
 
             <input
               type="text"
-              id="FirstName"
+              id="firstname"
               name="first_name"
               class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
@@ -70,7 +70,7 @@
 
             <input
               type="text"
-              id="LastName"
+              id="lastname"
               name="last_name"
               class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
@@ -83,19 +83,19 @@
             </label>
             <input
               type="text"
-              id="CompanyName"
+              id="companyname"
               name="company_name"
               class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
           </div>
 
           <!-- User Role Dropdown -->
-          <div class="col-span-6">
+          {{!-- <div class="col-span-6">
             <label for="UserRole" class="block text-sm font-medium text-gray-700">
               User Role
-            </label>
-            <select
-              id="UserRole"
+            </label> --}}
+            {{!-- <select
+              id="userRole"
               name="user_role"
               class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             >
@@ -107,16 +107,16 @@
               <option value="business_analyst">Business Analyst</option>
               <option value="consultant">Consultant</option>
               <option value="other">Other</option>
-            </select>
-          </div>
+            </select> --}}
+          {{!-- </div> --}}
 
           <!-- Company Industry Dropdown -->
-          <div class="col-span-6">
+          {{!-- <div class="col-span-6">
             <label for="CompanyIndustry" class="block text-sm font-medium text-gray-700">
               Company Industry
             </label>
             <select
-              id="CompanyIndustry"
+              id="companyIndustry"
               name="company_industry"
               class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             >
@@ -129,13 +129,13 @@
               <option value="retail">Retail</option>
               <option value="other">Other</option>
             </select>
-          </div>
+          </div> --}}
 
           <div class="col-span-6">
             <label for="Email" class="block text-sm font-medium text-gray-700"> Corporate Email</label>
             <input
               type="email"
-              id="Email"
+              id="email"
               name="email"
               class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
@@ -145,7 +145,7 @@
             <label for="Password" class="block text-sm font-medium text-gray-700"> Password </label>
             <input
               type="password"
-              id="Password"
+              id="password"
               name="password"
               class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
@@ -157,7 +157,7 @@
             </label>
             <input
               type="password"
-              id="PasswordConfirmation"
+              id="passwordconfirmation"
               name="password_confirmation"
               class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
             />
@@ -216,4 +216,47 @@
 
       return true; // Allow form submission
   }
+
+  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+    e.preventDefault(); // Prevent default form submission
+
+    // Get form input values
+    const firstname = document.getElementById('firstname').value;
+    const lastname = document.getElementById('lastname').value;
+    const password = document.getElementById('password').value;
+    const email = document.getElementById('email').value;
+    const companyname = document.getElementById('companyname').value;
+
+    // Prepare data object, initially without latitude and longitude
+    const data = {
+      firstname,
+      lastname,
+      email,
+      password,
+      companyname,
+    };
+
+        try {
+          // Send registration data, including geolocation, to the server
+          const response = await fetch('/register', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          if (response.ok) {
+            alert('Registration successful! Redirecting to dashboard...');
+          } else {
+            const errorText = await response.text();
+            alert('Registration failed: ' + errorText);
+          }
+        } catch (error) {
+          console.error('Error:', error);
+          alert('An unexpected error occurred.');
+        }
+      },
+     
+  );
 </script>
