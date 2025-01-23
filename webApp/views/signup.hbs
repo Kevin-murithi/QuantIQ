@@ -207,7 +207,7 @@
 <script>
   function validateForm() {
       const password = document.getElementById("Password").value;
-      const passwordConfirm = document.getElementById("PasswordConfirmation").value;
+      const passwordConfirm = document.getElementById("Passwordconfirmation").value;
 
       if (password !== passwordConfirm) {
           alert("Passwords do not match.");
@@ -217,7 +217,7 @@
       return true; // Allow form submission
   }
 
-  document.getElementById('registerForm').addEventListener('submit', async (e) => {
+  document.getElementById('registerform').addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
 
     // Get form input values
