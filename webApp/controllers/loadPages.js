@@ -1,19 +1,19 @@
 module.exports.landingPage = (_req, res) => {
-  res.render('landingpage');
+  res.render('landingpage', {pageTitle: "Langing Page"});
 }
 
 module.exports.signupPage = (_req, res) => {
-  res.render('signup');
+  res.render('signup', {pageTitle: "Signup Form"});
 }
 
 module.exports.loginPage = (_req, res) => {
-  res.render('login');
+  res.render('login', {pageTitle: "Signin Form"});
 }
 
 module.exports.customfieldspage = (_req, res) => {
-  res.render('customfields');
+  res.render('customfields', {pageTitle: "Custom Fields"});
 }
 
 module.exports.dashboard = (_req, res) => {
-  res.render('dashboard');
+  res.render('dashboard', {pageTitle: "Dashboard"});
 }

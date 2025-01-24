@@ -17,14 +17,6 @@
   justify-items: $justify;
 }
 
-// Font Settings Mixin
-@mixin font-settings($size: 16px, $weight: normal, $family: 'Arial, sans-serif', $lineHeight: 1.5, $letterSpacing: normal) {
-  font-size: $size;
-  font-weight: $weight;
-  font-family: $family;
-  line-height: $lineHeight;
-  letter-spacing: $letterSpacing;
-}
 
 body{
   min-height: 100vh;
@@ -44,7 +36,7 @@ body{
   .sidebar{
     @include flexbox(start, start, column);
     padding: 1.5rem 1rem;
-    border-right: 1.6px solid gray;
+    border-right: 1.6px solid rgb(185, 184, 184);
 
     .logo{
       @include flexbox(center, center);
@@ -55,16 +47,17 @@ body{
         width: 100%;
 
         & > span:nth-child(1){
-          width: 34px;
+          width: 32px;
 
           img{
             width: 100%;
           }
         }
         & > span:nth-child(2){
-          font-size: 1.5rem;
-          font-weight: 600;
+          font-size: 1.4rem;
+          font-weight: 700;
           margin-left: 1rem;
+          opacity: .8;
         }
       }
     }
@@ -79,7 +72,7 @@ body{
         @include flexbox(start, center, row);
 
         & > span:nth-child(1){
-          width: 20px;
+          width: 22px;
     
           img{
             width: 100%;
@@ -96,6 +89,61 @@ body{
   }
 
   .parent_container{
+    @include flexbox(start, center, column);
 
+    .dynamic_head{
+      @include flexbox(space-between, center, row);
+      width: 100%;
+      padding: 1.5rem .85rem;
+      border-bottom: 1.5px solid lightgray;
+
+      .dynamic_title{
+        font-size: 1.25rem;
+        font-weight: 600;
+        opacity: .7;
+      }
+
+      .dynamic_profile{
+        @include flexbox(start, center, row);
+
+        // .bell_box{
+        //   width: 28px;
+        
+        //   img{
+        //     width: 100%;
+        //   }
+        // }
+
+        .profile_box{
+          @include flexbox(start, center, row);
+          margin-left: 2rem;
+          
+          .company_img{
+            width: 38px;
+
+            img{
+              width: 100%;
+              opacity: .85;
+            }
+          }
+
+          .profile_brief{
+            @include flexbox(start, start, column);
+            margin-left: .45rem;
+
+            & > div:nth-child(1){
+              font-size: 14px;
+              font-weight: 700;
+              opacity: .9;
+            }
+            & > div:nth-child(2){
+              font-size: 12px;
+              font-weight: 600;
+              opacity: .9;
+            }
+          }
+        }
+      }
+    }
   }
 }
