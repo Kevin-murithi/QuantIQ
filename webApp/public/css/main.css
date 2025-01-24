@@ -263,6 +263,9 @@ body {
 .skeleton.active .sidebar {
   width: 220px;
 }
+.skeleton.active .sidebar .logo {
+  background-color: white;
+}
 .skeleton.active .sidebar .logo .quantiq > span:nth-child(2) {
   display: block;
 }
@@ -271,12 +274,5 @@ body {
 }
 .skeleton.active .sidebar .pages .page_link > span:nth-child(2) {
   display: block;
-}
-
-.parent_container.respond {
-  padding-left: 220px;
-}
-.parent_container.respond .dynamic_head {
-  padding-left: 220px;
 }
 /*# sourceMappingURL=main.css.map */

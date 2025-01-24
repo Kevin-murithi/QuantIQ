@@ -247,6 +247,8 @@ body{
     width: 220px;
 
     .logo{
+      background-color: white;
+      
       .quantiq{
         & > span:nth-child(2){
           display: block;
@@ -269,10 +271,10 @@ body{
   }
 }
 
-.parent_container.respond{
-  padding-left: 220px;
+// .parent_container.respond{
+//   padding-left: 220px;
 
-  .dynamic_head{
-    padding-left: 220px;
-  }
-}
+//   .dynamic_head{
+//     padding-left: 220px;
+//   }
+// }

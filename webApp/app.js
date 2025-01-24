@@ -7,24 +7,6 @@ const dotenv = require('dotenv');
 const db = require('./models/db');
 const authRoutes = require("./routes/authRoutes");
 const morgan = require('morgan');
-const jwt = require('jsonwebtoken'); 
-
-const verifyToken = (req, res, next) => {
-  const authHeader = req.headers.authorization;
-
-  if (!authHeader || !authHeader.startsWith('Bearer ')) {
-    return res.status(401).json({ success: false, message: 'Access denied. No token provided.' });
-  }
-
-  const token = authHeader.split(' ')[1]; // Extract token from "Bearer <token>"
-  try {
-    const decoded = jwt.verify(token, 'drake'); // Verify token
-    req.user = decoded; // Attach user data to the request object
-    next(); // Proceed to the next middleware or route handler
-  } catch (error) {
-    res.status(403).json({ success: false, message: 'Invalid or expired token.' });
-  }
-};
 
 dotenv.config();
 const app = express();
@@ -79,16 +61,6 @@ app.use(authRoutes);
 app.use(cors(
 ));
 app.use(morgan("dev"));
-
-// JWT Middleware to protect certain routes
-// Protected Route Example
-app.use('/protected', verifyToken, (req, res) => {
-  res.json({
-    success: true,
-    message: 'Access to protected route granted.',
-    user: req.user, // Include user data from the token
-  });
-});
 
 
 const PORT = process.env.PORT || 8080;
