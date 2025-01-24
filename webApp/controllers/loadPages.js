@@ -13,3 +13,7 @@ module.exports.loginPage = (_req, res) => {
 module.exports.customfieldspage = (_req, res) => {
   res.render('customfields');
 }
+
+module.exports.dashboard = (_req, res) => {
+  res.render('dashboard');
+}

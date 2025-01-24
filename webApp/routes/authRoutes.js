@@ -11,6 +11,7 @@ var jsonParser = bodyParser.json();
 
 // Page rendering routes
 router.get ("/", loadPages.landingPage);
+router.get ("/dashboard", loadPages.dashboard);
 router.get ("/signup", loadPages.signupPage);
 router.get ("/login", loadPages.loginPage);
 router.get("/customfield", loadPages.customfieldspage);
