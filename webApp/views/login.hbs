@@ -71,7 +71,7 @@
               </button>
               <p class="mt-4 text-sm text-gray-500 sm:mt-0">
                   Don't have an account?
-                  <a href="/signup.html" class="text-gray-700 underline">Sign up</a>.
+                  <a href="/signup" class="text-gray-700 underline">Sign up</a>.
               </p>
           </div>
       </form>
@@ -127,7 +127,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         const result = await response.json();
 
         if (response.ok && result.success) {
-            window.location.href = '/dashboard'; 
+            window.location.href = '/'; 
         } else {
             // Show error message on failed login
             alert(result.message || 'Login failed. Please check your credentials and try again.');
