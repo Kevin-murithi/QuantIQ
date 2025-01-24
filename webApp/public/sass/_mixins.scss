@@ -1,0 +1,40 @@
+// Flexbox Mixin
+@mixin flexbox($justify: center, $align: center, $direction: row, $wrap: nowrap) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+}
+
+// Grid Mixin
+@mixin grid($columns: 1fr, $rows: auto, $gap: 0, $align: start, $justify: start) {
+  display: grid;
+  grid-template-columns: $columns;
+  grid-template-rows: $rows;
+  gap: $gap;
+  align-items: $align;
+  justify-items: $justify;
+}
+
+// Font Settings Mixin
+@mixin font-settings($size: 16px, $weight: normal, $family: 'Arial, sans-serif', $lineHeight: 1.5, $letterSpacing: normal) {
+  font-size: $size;
+  font-weight: $weight;
+  font-family: $family;
+  line-height: $lineHeight;
+  letter-spacing: $letterSpacing;
+}
+
+// Center Element Mixin (Absolute Centering)
+@mixin center-absolute($top: 50%, $left: 50%, $transform: translate(-50%, -50%)) {
+  position: absolute;
+  top: $top;
+  left: $left;
+  transform: $transform;
+}
+
+// Box Shadow Mixin
+@mixin box-shadow($x: 0, $y: 4px, $blur: 6px, $spread: 0, $color: rgba(0, 0, 0, 0.1)) {
+  box-shadow: $x $y $blur $spread $color;
+}

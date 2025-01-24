@@ -1,0 +1,79 @@
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.skeleton {
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 0;
+}
+.skeleton .sidebar {
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  padding: 1.5rem 1rem;
+  border-right: 1.6px solid gray;
+}
+.skeleton .sidebar .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.skeleton .sidebar .logo .quantiq {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.skeleton .sidebar .logo .quantiq > span:nth-child(1) {
+  width: 34px;
+}
+.skeleton .sidebar .logo .quantiq > span:nth-child(1) img {
+  width: 100%;
+}
+.skeleton .sidebar .logo .quantiq > span:nth-child(2) {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+.skeleton .sidebar .pages {
+  margin-top: 2.5rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.skeleton .sidebar .pages .page_link {
+  width: 100%;
+  margin-top: 1.2rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.skeleton .sidebar .pages .page_link > span:nth-child(1) {
+  width: 20px;
+}
+.skeleton .sidebar .pages .page_link > span:nth-child(1) img {
+  width: 100%;
+}
+.skeleton .sidebar .pages .page_link > span:nth-child(2) {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 1.6rem;
+}
+/*# sourceMappingURL=main.css.map */
