@@ -237,7 +237,6 @@
     };
 
         try {
-          // Send registration data, including geolocation, to the server
           const response = await fetch('/register', {
             method: 'POST',
             headers: {
@@ -248,7 +247,7 @@
 
           if (response.ok) {
             alert('Registration successful! Redirecting to dashboard...');
-            window.location.href = '/';
+            window.location.href = '/customfield';
           } 
           else {
             const errorText = await response.text();

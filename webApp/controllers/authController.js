@@ -1,8 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const db = require('../models/db');
-
-const JWT_SECRET = 'your_secret_key';
+const JWT_SECRET = 'drake';
 
 module.exports.register = async (req, res) => {
   try {
@@ -64,23 +63,19 @@ module.exports.login = async (req, res) => {
       const match = await bcrypt.compare(password, results[0].password);  
 
       if (match) {
-        // Create a payload for the JWT
         const payload = {
-          user_id: results[0].user_id,
+          tenantId: results[0].user_id,
           username: results[0].username,
           email: results[0].email,
         };
-
-        // Generate a JWT token
-        const token = jwt.sign(payload, JWT_SECRET, { expiresIn: '1h' });
-
-        // Respond with the token and user information
+        // Ensure JWT_SECRET is available
+        const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
         res.status(200).json({
           success: true,
           message: 'Login successful',
-          token: token,  // Send the token in the response
+          token: token,
           user: {
-            user_id: results[0].user_id,
+            tenantId: results[0].user_id,
             username: results[0].username,
             email: results[0].email,
           },
@@ -99,27 +94,25 @@ module.exports.login = async (req, res) => {
 
 module.exports.saveCustomEntry = async (req, res) => {
   try {
-      console.log('Received body:', req.body);  // Add this line for debugging
-      const { tenantId, entryData } = req.body;
+    const tenantId = req.user.tenantId; // Access tenantId from the JWT payload
+    const { entryData } = req.body;
 
-      // Validate input
-      if (!tenantId || !entryData) {
-          return res.status(400).json({ message: 'Tenant ID and Entry Data are required' });
-      }
+    if (!entryData) {
+      return res.status(400).json({ message: 'Entry Data is required' });
+    }
 
-      const [result] = await db.query(
-          'INSERT INTO custom_entries (tenant_id, entry_data) VALUES (?, ?)',
-          [tenantId, JSON.stringify(entryData)]
-      );
+    const [result] = await db.query(
+      'INSERT INTO custom_entries (tenant_id, entry_data) VALUES (?, ?)',
+      [tenantId, JSON.stringify(entryData)]
+    );
 
-      const entryId = result.insertId;
-      return res.status(201).json({ message: 'Custom entry saved successfully', entryId });
+    const entryId = result.insertId;
+    return res.status(201).json({ message: 'Custom entry saved successfully', entryId });
   } catch (error) {
-      console.error('Database query error:', error);
-      res.status(500).json({ message: 'Error saving custom entry', error: error.message || error });
+    console.error('Database query error:', error);
+    res.status(500).json({ message: 'Error saving custom entry', error: error.message || error });
   }
 };
-
 // Fetch all custom entries for a tenant
 module.exports.getCustomEntries = async (req, res) => {
   try {

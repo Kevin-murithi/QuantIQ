@@ -1,50 +1,20 @@
-const jwt = require ('jsonwebtoken');
-const User = require ("../models/db");
+// middleware/authMiddleware.js
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = 'drake'; // Make sure this matches the secret you used for signing the token
 
-//check and verify token
-const requireAuth = (req, res, next) => {
-  const token = req.cookies.jwt;
-  
-  if (token) {
-    jwt.verify (token, process.env.SECRET, (err, decodedToken) => {
-      if (err) {
-        console.log (err.message);
-        res.redirect ('/sign_in');
-      }
-      else {
-        console.log (decodedToken);
-        next();
-      }
-    })
-  }
-  else {
-    res.redirect ('/sign_in');
-  }
-}
+module.exports.verifyToken = (req, res, next) => {
+  const token = req.headers['authorization']?.split(' ')[1]; // Assuming the token is passed in the Authorization header as "Bearer token"
 
-//check user
-const checkUser = (req, res, next) => {
-  const token = req.cookies.jwt;
-  
-  if (token) {
-    jwt.verify (token, process.env.SECRET, async (err, decodedToken) => {
-      if (err) {
-        console.log (err.message);
-        res.locals.user = null;
-        next();
-      }
-      else {
-        console.log (decodedToken);
-        const user = await User.findById(decodedToken.id);
-        res.locals.user = user;
-        next();
-      }
-    })
+  if (!token) {
+    return res.status(403).json({ message: 'Token is required' });
   }
-  else {
-    res.locals.user = null;
-    next();
-  }
-}
 
-module.exports = { requireAuth, checkUser };
+  try {
+    const decoded = jwt.verify(token, JWT_SECRET);
+    req.user = decoded; // Attach the decoded user info (including tenantId) to the request object
+    next(); // Pass control to the next middleware or route handler
+  } catch (err) {
+    console.error('Invalid or expired token:', err);
+    res.status(403).json({ message: 'Invalid or expired token' });
+  }
+};

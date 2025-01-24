@@ -55,7 +55,7 @@
               <label for="Password" class="block text-sm font-medium text-gray-700"> Password </label>
               <input
                   type="password"
-                  id="Password"
+                  id="password"
                   name="password"
                   class="mt-1 w-full rounded-md border-gray-200 bg-white text-sm text-gray-700 shadow-sm"
                   required
@@ -81,61 +81,64 @@
   </div>
 </section>
 
+
+
 <script>
+  // Basic form validation
   function validateForm() {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    // Basic validation
     if (!email || !password) {
-        alert("Please fill in both fields.");
-        return false;
+      alert("Please fill in both fields.");
+      return false;  
     }
-    return true; // Allow form submission
+    return true;  // Allow form submission
   }
 
-document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    document.getElementById('loginform').addEventListener('submit', async (e) => {
     e.preventDefault(); // Prevent default form submission
 
-    // Get form input values
     const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
-    // Validate form inputs
-    if (!email || !password) {
-        alert('Please fill in all fields.');
-        return;
-    }
-
-    // Prepare the data for submission
-    const data = {
-        email,
-        password
-    };
+    const data = { email, password };
 
     try {
-        // Send a POST request to the login endpoint
-        const response = await fetch('/login', { 
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(data)
-        });
+      const response = await fetch('/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+  });
 
-        // Parse the response
-        const result = await response.json();
+  const result = await response.json();
+      if (response.ok && result.success) {
+        console.log('Login Success:', result);  // Success message and details
 
-        if (response.ok && result.success) {
-            window.location.href = '/'; 
+        // Check if token and user data are present in the response
+        if (result.token && result.user) {
+          localStorage.setItem('token', result.token);
+          localStorage.setItem('user', JSON.stringify(result.user));
+
+          console.log('Token Stored:', localStorage.getItem('token'));  // Log token from localStorage
+          console.log('User Info Stored:', localStorage.getItem('user'));  // Log user data from localStorage
+
+          window.location.href = '/customfield'; 
         } else {
-            // Show error message on failed login
-            alert(result.message || 'Login failed. Please check your credentials and try again.');
+          alert('Token or user data not received. Please try again.');
         }
+      } else {
+        console.log('Login Failed:', result.message);
+        alert(result.message || 'Login failed. Please check your credentials and try again.');
+      }
     } catch (error) {
-        console.error('Error:', error);
-        alert('An error occurred. Please try again later.');
+      console.error('Error during login process:', error); 
+      alert('An error occurred. Please try again later.');
     }
-});
+  });
+
+
 
 </script>

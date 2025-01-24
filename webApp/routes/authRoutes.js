@@ -1,6 +1,7 @@
 const { Router } = require ('express');
 const authController = require ('../controllers/authController');
 const loadPages = require ('../controllers/loadPages');
+const { verifyToken } = require('../middleware/authMiddleware');
 
 const router = Router();
 
@@ -20,7 +21,7 @@ router.get ("/signin", loadPages.loginPage);
 router.post('/register', jsonParser, authController.register);
 router.post('/login', jsonParser, authController.login);
 
-router.post('/customentries', authController.saveCustomEntry);       // Save a custom entry
-router.get('/customentries/:tenantId', authController.getCustomEntries);
+router.post('/customentries', verifyToken, authController.saveCustomEntry);       // Save a custom entry
+router.get('/customentries/:tenantId', verifyToken, authController.getCustomEntries);
 
 module.exports = router;
