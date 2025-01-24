@@ -9,3 +9,7 @@ module.exports.signupPage = (_req, res) => {
 module.exports.loginPage = (_req, res) => {
   res.render('login');
 }
+
+module.exports.customfieldspage = (_req, res) => {
+  res.render('customfields');
+}

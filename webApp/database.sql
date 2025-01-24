@@ -69,3 +69,12 @@ CREATE TABLE Historical_Trends (
     top_category VARCHAR(50),
     campaign_performance JSON
 );
+
+-- TEST TABLE 
+
+CREATE TABLE custom_entries (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    tenant_id INT NOT NULL,
+    entry_data JSON NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

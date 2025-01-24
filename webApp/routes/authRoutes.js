@@ -12,10 +12,14 @@ var jsonParser = bodyParser.json();
 router.get ("/", loadPages.landingPage);
 router.get ("/signup", loadPages.signupPage);
 router.get ("/login", loadPages.loginPage);
+router.get("/customfield", loadPages.customfieldspage);
 
 // Other (CRUD/auth) routes
 
 router.post('/register', jsonParser, authController.register);
 router.post('/login', jsonParser, authController.login);
+
+router.post('/customentries', authController.saveCustomEntry);       // Save a custom entry
+router.get('/customentries/:tenantId', authController.getCustomEntries);
 
 module.exports = router;

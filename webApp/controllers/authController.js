@@ -96,3 +96,42 @@ module.exports.login = async (req, res) => {
   }
 };
 
+module.exports.saveCustomEntry = async (req, res) => {
+  try {
+      console.log('Received body:', req.body);  // Add this line for debugging
+      const { tenantId, entryData } = req.body;
+
+      // Validate input
+      if (!tenantId || !entryData) {
+          return res.status(400).json({ message: 'Tenant ID and Entry Data are required' });
+      }
+
+      const [result] = await db.query(
+          'INSERT INTO custom_entries (tenant_id, entry_data) VALUES (?, ?)',
+          [tenantId, JSON.stringify(entryData)]
+      );
+
+      const entryId = result.insertId;
+      return res.status(201).json({ message: 'Custom entry saved successfully', entryId });
+  } catch (error) {
+      console.error('Database query error:', error);
+      res.status(500).json({ message: 'Error saving custom entry', error: error.message || error });
+  }
+};
+
+// Fetch all custom entries for a tenant
+module.exports.getCustomEntries = async (req, res) => {
+  try {
+      const { tenantId } = req.params;
+
+      const [entries] = await db.query(
+          'SELECT * FROM custom_entries WHERE tenant_id = ?',
+          [tenantId]
+      );
+
+      return res.status(200).json({ entries });
+  } catch (error) {
+      console.error('Database query error:', error);
+      res.status(500).json({ message: 'Error fetching custom entries', error: error.message || error });
+  }
+};
