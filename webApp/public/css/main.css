@@ -20,7 +20,7 @@ body {
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 1fr;
   gap: 0;
 }
 .skeleton .sidebar {
@@ -29,16 +29,34 @@ body {
   align-items: start;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 1.5rem 1rem;
   border-right: 1.6px solid rgb(185, 184, 184);
+  transition: 0.15s ease;
+  position: relative;
+  position: fixed;
+  width: 220px;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+}
+@media (max-width: 1040px) {
+  .skeleton .sidebar {
+    width: 60px;
+  }
+}
+@media (max-width: 600px) {
+  .skeleton .sidebar {
+    width: 50px;
+  }
 }
 .skeleton .sidebar .logo {
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   width: 100%;
+  padding: 1.5rem 0;
 }
 .skeleton .sidebar .logo .quantiq {
   display: flex;
@@ -47,26 +65,79 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   width: 100%;
+  padding-left: 1rem;
 }
 .skeleton .sidebar .logo .quantiq > span:nth-child(1) {
-  width: 32px;
+  width: 30px;
 }
 .skeleton .sidebar .logo .quantiq > span:nth-child(1) img {
   width: 100%;
 }
 .skeleton .sidebar .logo .quantiq > span:nth-child(2) {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 700;
-  margin-left: 1rem;
+  margin-left: 0.75rem;
   opacity: 0.8;
 }
-.skeleton .sidebar .pages {
-  margin-top: 2.5rem;
+@media (max-width: 1040px) {
+  .skeleton .sidebar .logo .quantiq > span:nth-child(2) {
+    display: none;
+  }
+}
+.skeleton .sidebar .logo .sidebar_toggle {
+  width: 100%;
   display: flex;
-  justify-content: start;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+.skeleton .sidebar .logo .sidebar_toggle span {
+  width: 22px;
+  height: 22px;
+  border: 1.85px solid rgb(169, 167, 167);
+  z-index: 120;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  background-color: white;
+  margin-top: 8px;
+  transition: 1s ease;
+}
+@media (min-width: 1035px) {
+  .skeleton .sidebar .logo .sidebar_toggle span {
+    display: none;
+  }
+}
+.skeleton .sidebar .logo .sidebar_toggle span img {
+  width: 14px;
+  opacity: 0.65;
+}
+.skeleton .sidebar .logo .toggle_sidebar {
+  width: 32px;
+}
+.skeleton .sidebar .logo .toggle_sidebar img {
+  width: 100%;
+}
+@media (min-width: 1025px) {
+  .skeleton .sidebar .logo .toggle_sidebar img:nth-child(1) {
+    display: none;
+  }
+}
+.skeleton .sidebar .logo .toggle_sidebar .hidden {
+  display: none;
+}
+.skeleton .sidebar .pages {
+  display: flex;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
+  padding: 1.8rem 1rem;
+  width: 100%;
 }
 .skeleton .sidebar .pages .page_link {
   width: 100%;
@@ -88,12 +159,33 @@ body {
   font-weight: 500;
   margin-left: 1.6rem;
 }
+@media (max-width: 1040px) {
+  .skeleton .sidebar .pages .page_link > span:nth-child(2) {
+    display: none;
+  }
+}
+@media (max-width: 780px) {
+  .skeleton .sidebar .pages .page_link > span:nth-child(2) {
+    font-size: 12px;
+  }
+}
 .skeleton .parent_container {
   display: flex;
   justify-content: start;
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
+  padding-left: 220px;
+}
+@media (max-width: 1040px) {
+  .skeleton .parent_container {
+    padding-left: 60px;
+  }
+}
+@media (max-width: 600px) {
+  .skeleton .parent_container {
+    padding-left: 50px;
+  }
 }
 .skeleton .parent_container .dynamic_head {
   display: flex;
@@ -102,13 +194,30 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   width: 100%;
-  padding: 1.5rem 0.85rem;
+  padding: 1.35rem 0.75rem 0.85rem 0.75rem;
   border-bottom: 1.5px solid lightgray;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  padding-left: 220px;
+  z-index: 10;
+}
+@media (max-width: 1040px) {
+  .skeleton .parent_container .dynamic_head {
+    padding-left: 60px;
+  }
+}
+@media (max-width: 600px) {
+  .skeleton .parent_container .dynamic_head {
+    padding-left: 50px;
+  }
 }
 .skeleton .parent_container .dynamic_head .dynamic_title {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
   font-weight: 600;
   opacity: 0.7;
+  margin-left: 0.5rem;
 }
 .skeleton .parent_container .dynamic_head .dynamic_profile {
   display: flex;
@@ -149,5 +258,25 @@ body {
   font-size: 12px;
   font-weight: 600;
   opacity: 0.9;
+}
+
+.skeleton.active .sidebar {
+  width: 220px;
+}
+.skeleton.active .sidebar .logo .quantiq > span:nth-child(2) {
+  display: block;
+}
+.skeleton.active .sidebar .logo .sidebar_toggle span {
+  transform: rotateY(180deg);
+}
+.skeleton.active .sidebar .pages .page_link > span:nth-child(2) {
+  display: block;
+}
+
+.parent_container.respond {
+  padding-left: 220px;
+}
+.parent_container.respond .dynamic_head {
+  padding-left: 220px;
 }
 /*# sourceMappingURL=main.css.map */

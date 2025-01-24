@@ -30,41 +30,106 @@ body{
   width: 100%;
   height: 100vh;
   display: grid;
-  grid-template-columns: 260px 1fr;
+  grid-template-columns: 1fr;
   gap: 0;
 
   .sidebar{
     @include flexbox(start, start, column);
-    padding: 1.5rem 1rem;
     border-right: 1.6px solid rgb(185, 184, 184);
+    transition: 0.15s ease;
+    position: relative;
+    position: fixed;
+    width: 220px;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 100;
+
+    @media (max-width: 1040px) {
+      width: 60px;
+    }
+    @media (max-width: 600px) {
+      width: 50px;
+    }
 
     .logo{
-      @include flexbox(center, center);
+      @include flexbox(start, center, column);
       width: 100%;
+      padding: 1.5rem 0;
 
       .quantiq{
         @include flexbox(start, center, row);
         width: 100%;
-
+        padding-left: 1rem;
+        
         & > span:nth-child(1){
-          width: 32px;
+          width: 30px;
 
           img{
             width: 100%;
           }
         }
         & > span:nth-child(2){
-          font-size: 1.4rem;
+          font-size: 1.35rem;
           font-weight: 700;
-          margin-left: 1rem;
+          margin-left: .75rem;
           opacity: .8;
+
+          @media(max-width: 1040px){
+            display: none;
+          }
+        }
+      }
+
+      .sidebar_toggle{
+        width: 100%;
+        @include flexbox(center, center);
+
+        span{
+          width: 22px; 
+          height: 22px;
+          border: 1.85px solid rgb(169, 167, 167);
+          z-index: 120;
+          border-radius: 50%;
+          @include flexbox(center, center);
+          background-color: white;
+          margin-top: 8px;
+          transition: 1s ease;
+
+          @media(min-width: 1035px){
+            display: none;
+          }
+
+          img{
+            width: 14px;
+            opacity: .65;
+          }
+        }
+      }
+
+      .toggle_sidebar{
+        width: 32px;
+
+        img{
+          width: 100%;
+        }
+
+        img:nth-child(1){
+          @media(min-width: 1025px){
+            display: none;
+          }
+        }
+
+        .hidden{
+          display: none;
         }
       }
     }
 
     .pages{
-      margin-top: 2.5rem;
-      @include flexbox(start, center, column);
+      @include flexbox(center, center, column);
+      padding: 1.8rem 1rem;
+      width: 100%;
 
       .page_link{
         width: 100%;
@@ -83,6 +148,13 @@ body{
           font-size: .9rem;
           font-weight: 500;
           margin-left: 1.6rem;
+
+          @media(max-width: 1040px){
+            display: none;
+          }
+          @media(max-width: 780px){
+            font-size: 12px;
+          }
         }
       }
     }
@@ -90,17 +162,39 @@ body{
 
   .parent_container{
     @include flexbox(start, center, column);
+    padding-left: 220px;
+
+    @media(max-width: 1040px){
+      padding-left: 60px;
+    }
+    @media(max-width: 600px){
+      padding-left: 50px;
+    }
 
     .dynamic_head{
       @include flexbox(space-between, center, row);
       width: 100%;
-      padding: 1.5rem .85rem;
+      padding: 1.35rem .75rem .85rem .75rem;
       border-bottom: 1.5px solid lightgray;
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      padding-left: 220px;
+      z-index: 10;
+
+      @media(max-width: 1040px){
+        padding-left: 60px;
+      }
+      @media(max-width: 600px){
+        padding-left: 50px;
+      }
 
       .dynamic_title{
-        font-size: 1.25rem;
+        font-size: 1.2rem;
         font-weight: 600;
         opacity: .7;
+        margin-left: .5rem;
       }
 
       .dynamic_profile{
@@ -145,5 +239,40 @@ body{
         }
       }
     }
+  }
+}
+
+.skeleton.active{
+  .sidebar{
+    width: 220px;
+
+    .logo{
+      .quantiq{
+        & > span:nth-child(2){
+          display: block;
+        }
+      }
+      .sidebar_toggle{
+        span{
+          transform: rotateY(180deg);
+        }
+      }
+    }
+
+    .pages{
+      .page_link{
+        & > span:nth-child(2){
+          display: block;
+        }
+      }
+    }
+  }
+}
+
+.parent_container.respond{
+  padding-left: 220px;
+
+  .dynamic_head{
+    padding-left: 220px;
   }
 }
