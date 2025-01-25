@@ -1,5 +1,5 @@
 module.exports.landingPage = (_req, res) => {
-  res.render('landingpage', {pageTitle: "Langing Page"});
+  res.render('landingpage', {pageTitle: "Landing Page"});
 }
 
 module.exports.signupPage = (_req, res) => {
