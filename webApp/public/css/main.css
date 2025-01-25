@@ -1,4 +1,4 @@
-/* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -12,8 +12,8 @@ body {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  flex-direction: column;
   justify-content: center;
+}
 
 .skeleton {
   width: 100%;
@@ -141,10 +141,11 @@ body {
   flex-wrap: nowrap;
   padding: 1.8rem 0;
   width: 100%;
+  height: 100%;
 }
 .skeleton .sidebar .pages .page_link {
   width: 100%;
-  padding: 1rem 1rem;
+  padding: 0.75rem 1rem;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -152,7 +153,17 @@ body {
   flex-wrap: nowrap;
 }
 .skeleton .sidebar .pages .page_link > span:nth-child(1) {
-  width: 22px;
+  width: 24px;
+}
+@media (max-width: 1040px) {
+  .skeleton .sidebar .pages .page_link > span:nth-child(1) {
+    width: 22px;
+  }
+}
+@media (max-width: 780px) {
+  .skeleton .sidebar .pages .page_link > span:nth-child(1) {
+    width: 20px;
+  }
 }
 .skeleton .sidebar .pages .page_link > span:nth-child(1) img {
   width: 100%;
@@ -166,6 +177,7 @@ body {
 @media (max-width: 1040px) {
   .skeleton .sidebar .pages .page_link > span:nth-child(2) {
     display: none;
+    font-size: 14px;
   }
 }
 @media (max-width: 780px) {
@@ -282,18 +294,10 @@ body {
 .skeleton.active .sidebar .logo .quantiq > span:nth-child(2) {
   display: block;
 }
-.skeleton.active .sidebar .logo .sidebar_toggle {
-  display: flex;
-  justify-content: end;
-  align-items: center;
-  flex-direction: row;
-  flex-wrap: nowrap;
-}
 .skeleton.active .sidebar .logo .sidebar_toggle span {
   transform: rotateY(180deg);
 }
 .skeleton.active .sidebar .pages .page_link > span:nth-child(2) {
   display: block;
-} */
+}
 /*# sourceMappingURL=main.css.map */
-
