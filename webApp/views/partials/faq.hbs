@@ -1,91 +1,57 @@
-    <section class="relative py-20 px-8 lg:px-20">
-        <!-- Section Header -->
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-6xl font-extrabold mb-4">
-                Frequently Asked Questions
-            </h2>
-            <p class="text-lg md:text-xl text-gray-300">
-                Get answers to common questions about our platform.
-            </p>
-        </div>
+<div x-data="{ selectedFaq: null }" class="leading-relaxed max-w-screen-xl mt-12 mx-auto px-4 md:px-8">
+  <div class="space-y-3 text-center">
+    <h1 class="text-3xl text-gray-800 font-semibold">Frequently Asked Questions</h1>
+    <p class="text-gray-600 max-w-lg mx-auto text-lg">Get answers to common questions about our platform.</p>
+  </div>
+  <div class="mt-14 max-w-2xl mx-auto">
+    <!-- FAQ 1 -->
+    <div class="space-y-3 mt-5 overflow-hidden border-b">
+      <h4 class="cursor-pointer pb-5 flex items-center justify-between text-lg text-gray-700 font-medium" @click="selectedFaq = selectedFaq === 0 ? null : 0">
+        <span>What is your data security policy?</span>
+        <svg x-show="selectedFaq === 0" class="h-5 w-5 text-gray-500 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+        </svg>
+        <svg x-show="selectedFaq !== 0" class="h-5 w-5 text-gray-500 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+      </h4>
+      <div x-show="selectedFaq === 0" x-collapse>
+        <p class="text-gray-500 pb-4">We take data security very seriously. All data is encrypted using industry-standard SSL encryption, and we follow strict security practices to protect your information.</p>
+      </div>
+    </div>
+    
+    <!-- FAQ 2 -->
+    <div class="space-y-3 mt-5 overflow-hidden border-b">
+      <h4 class="cursor-pointer pb-5 flex items-center justify-between text-lg text-gray-700 font-medium" @click="selectedFaq = selectedFaq === 1 ? null : 1">
+        <span>What are the pricing plans?</span>
+        <svg x-show="selectedFaq === 1" class="h-5 w-5 text-gray-500 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+        </svg>
+        <svg x-show="selectedFaq !== 1" class="h-5 w-5 text-gray-500 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+      </h4>
+      <div x-show="selectedFaq === 1" x-collapse>
+        <p class="text-gray-500 pb-4">We offer three pricing plans: Basic, Professional, and Enterprise. You can view details and choose the one that best suits your business needs on our Pricing page.</p>
+      </div>
+    </div>
 
-        <!-- FAQ Accordion -->
-        <div class="space-y-6">
-            <!-- Question 1 -->
-            <div class="bg-black bg-opacity-50 backdrop-blur-md p-6 rounded-lg shadow-lg">
-                <button class="w-full text-left text-lg font-semibold text-white focus:outline-none">
-                    <div class="flex justify-between items-center">
-                        <span>What is your data security policy?</span>
-                        <svg class="w-6 h-6 transform rotate-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="hidden mt-4 text-gray-300">
-                    <p>We take data security very seriously. All data is encrypted using industry-standard SSL encryption, and we follow strict security practices to protect your information.</p>
-                </div>
-            </div>
+    <!-- FAQ 3 -->
+    <div class="space-y-3 mt-5 overflow-hidden border-b">
+      <h4 class="cursor-pointer pb-5 flex items-center justify-between text-lg text-gray-700 font-medium" @click="selectedFaq = selectedFaq === 2 ? null : 2">
+        <span>Do you offer custom integrations?</span>
+        <svg x-show="selectedFaq === 2" class="h-5 w-5 text-gray-500 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+        </svg>
+        <svg x-show="selectedFaq !== 2" class="h-5 w-5 text-gray-500 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+        </svg>
+      </h4>
+      <div x-show="selectedFaq === 2" x-collapse>
+        <p class="text-gray-500 pb-4">Yes, we provide custom integrations to suit your specific business needs. Contact our sales team to discuss your requirements.</p>
+      </div>
+    </div>
 
-            <!-- Question 2 -->
-            <div class="bg-black bg-opacity-50 backdrop-blur-md p-6 rounded-lg shadow-lg">
-                <button class="w-full text-left text-lg font-semibold text-white focus:outline-none">
-                    <div class="flex justify-between items-center">
-                        <span>What are the pricing plans?</span>
-                        <svg class="w-6 h-6 transform rotate-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="hidden mt-4 text-gray-300">
-                    <p>We offer three pricing plans: Basic, Professional, and Enterprise. You can view details and choose the one that best suits your business needs on our Pricing page.</p>
-                </div>
-            </div>
-
-            <!-- Question 3 -->
-            <div class="bg-black bg-opacity-50 backdrop-blur-md p-6 rounded-lg shadow-lg">
-                <button class="w-full text-left text-lg font-semibold text-white focus:outline-none">
-                    <div class="flex justify-between items-center">
-                        <span>Do you offer custom integrations?</span>
-                        <svg class="w-6 h-6 transform rotate-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="hidden mt-4 text-gray-300">
-                    <p>Yes, we provide custom integrations to suit your specific business needs. Contact our sales team to discuss your requirements.</p>
-                </div>
-            </div>
-
-            <!-- Question 4 -->
-            <div class="bg-black bg-opacity-50 backdrop-blur-md p-6 rounded-lg shadow-lg">
-                <button class="w-full text-left text-lg font-semibold text-white focus:outline-none">
-                    <div class="flex justify-between items-center">
-                        <span>How can I contact support?</span>
-                        <svg class="w-6 h-6 transform rotate-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="hidden mt-4 text-gray-300">
-                    <p>You can contact our support team via email at support@yourcompany.com, or use the live chat feature on our website for immediate assistance.</p>
-                </div>
-            </div>
-
-            <!-- Question 5 -->
-            <div class="bg-black bg-opacity-50 backdrop-blur-md p-6 rounded-lg shadow-lg">
-                <button class="w-full text-left text-lg font-semibold text-white focus:outline-none">
-                    <div class="flex justify-between items-center">
-                        <span>Is there a free trial?</span>
-                        <svg class="w-6 h-6 transform rotate-0 transition-all duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </div>
-                </button>
-                <div class="hidden mt-4 text-gray-300">
-                    <p>Yes, we offer a 14-day free trial with full access to all features. You can sign up for the trial on our Pricing page.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <script>
-        const buttons = document.querySelectorAll('button');
-        buttons.forEach(button => {
-            button.addEventListener('click', () => {
-                const content = button.nextElementSibling;
-                const icon = button.querySelector('svg');
-                content.classList.toggle('hidden');
-                icon.classList.toggle('rotate-180');
-            });
-        });
-    </script>
+    <!-- Add more FAQs as needed -->
+  </div>
+</div>

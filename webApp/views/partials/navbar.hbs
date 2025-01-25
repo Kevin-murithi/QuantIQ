@@ -1,5 +1,4 @@
-
-<nav class="bg-white pb-5 md:text-sm" id="navbar">
+<nav class="pb-5 md:text-sm sticky top-0 z-50 bg-transparent shadow-md" id="navbar">
     <div class="gap-x-14 items-center max-w-screen-xl mx-auto px-4 md:flex md:px-8">
         <!-- Logo Section -->
         <div class="flex items-center justify-between py-5 md:block">
@@ -25,24 +24,24 @@
         <div class="flex-1 items-center mt-8 md:mt-0 md:flex hidden" id="menu">
             <ul class="justify-center items-center space-y-6 md:flex md:space-x-6 md:space-y-0">
                 <li class="text-gray-700 hover:text-gray-900">
-                    <a href="javascript:void(0)" class="block">Features</a>
+                    <a href="#features" class="block">Features</a>
                 </li>
                 <li class="text-gray-700 hover:text-gray-900">
-                    <a href="javascript:void(0)" class="block">Integrations</a>
+                    <a href="#pricing" class="block">Pricing</a>
                 </li>
                 <li class="text-gray-700 hover:text-gray-900">
-                    <a href="javascript:void(0)" class="block">Customers</a>
+                    <a href="#testimonials" class="block">Testimonials</a>
                 </li>
                 <li class="text-gray-700 hover:text-gray-900">
-                    <a href="javascript:void(0)" class="block">Pricing</a>
+                    <a href="#faq" class="block">FAQs</a>
                 </li>
             </ul>
             <div class="flex-1 gap-x-6 items-center justify-end mt-6 space-y-6 md:flex md:space-y-0 md:mt-0">
-                <a href="javascript:void(0)" class="block text-gray-700 hover:text-gray-900">
+                <a href="/signin" class="block text-gray-700 hover:text-gray-900">
                     Log in
                 </a>
-                <a href="javascript:void(0)"
-                    class="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-gray-800 hover:bg-gray-700 active:bg-gray-900 rounded-full md:inline-flex">
+                <a href="/signup"
+                    class="flex items-center justify-center gap-x-1 py-2 px-4 text-white font-medium bg-blue-600 hover:bg-blue-500 active:bg-blue-900 rounded-full md:inline-flex">
                     Sign in
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
                         class="w-5 h-5">
@@ -55,26 +54,3 @@
         </div>
     </div>
 </nav>
-
-
-
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const menu = document.getElementById('menu');
-        const closeIcon = document.getElementById('close-icon');
-        const hamburger = document.getElementById('hamburger');
-
-        menuBtn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-            hamburger.classList.toggle('hidden');
-            closeIcon.classList.toggle('hidden');
-        });
-
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.menu-btn') && !e.target.closest('#menu')) {
-                menu.classList.add('hidden');
-                hamburger.classList.remove('hidden');
-                closeIcon.classList.add('hidden');
-            }
-        });
-    </script>

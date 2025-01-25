@@ -21,7 +21,7 @@ module.exports.register = async (req, res) => {
     const user_id = result.insertId;
 
     const payload = {
-      user_id: user_id,
+      tenantId: user_id,
       firstname: firstname,
       lastname: lastname,
       email: email,
@@ -35,7 +35,7 @@ module.exports.register = async (req, res) => {
       message: 'User registered successfully',
       token: token,
       user: {
-        user_id: user_id,
+        tenantId: user_id,
         firstname: firstname,
         lastname: lastname,
         email: email,
