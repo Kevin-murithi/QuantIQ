@@ -35,7 +35,8 @@ body{
 
   .sidebar{
     @include flexbox(start, start, column);
-    border-right: 1.6px solid rgb(185, 184, 184);
+    //border-right: 1.6px solid rgb(185, 184, 184);
+    background-color: rgb(15, 15, 15);
     transition: 0.15s ease;
     position: relative;
     position: fixed;
@@ -74,6 +75,7 @@ body{
           font-weight: 700;
           margin-left: .75rem;
           opacity: .8;
+          color:rgb(169, 167, 167);
 
           @media(max-width: 1040px){
             display: none;
@@ -92,7 +94,7 @@ body{
           z-index: 120;
           border-radius: 50%;
           @include flexbox(center, center);
-          background-color: white;
+          background-color: rgb(204, 201, 201);
           margin-top: 8px;
           transition: 1s ease;
 
@@ -103,6 +105,10 @@ body{
           img{
             width: 14px;
             opacity: .65;
+          }
+
+          &:hover{
+            background-color: aliceblue;
           }
         }
       }
@@ -128,12 +134,12 @@ body{
 
     .pages{
       @include flexbox(center, center, column);
-      padding: 1.8rem 1rem;
+      padding: 1.8rem 0;
       width: 100%;
 
       .page_link{
         width: 100%;
-        padding: 1rem .25rem;
+        padding: 1rem 1rem;
         @include flexbox(start, center, row);
 
         & > span:nth-child(1){
@@ -147,13 +153,29 @@ body{
         & > span:nth-child(2){
           font-size: .9rem;
           font-weight: 500;
-          margin-left: 1.6rem;
+          margin-left: 1.25rem;
+          color:rgb(150, 205, 223);
+          //color:rgb(105, 184, 248);
 
           @media(max-width: 1040px){
             display: none;
           }
           @media(max-width: 780px){
             font-size: 12px;
+          }
+        }
+
+        &:hover{
+          background-color: rgb(28, 28, 29);
+          & > span:nth-child(2){
+            color:rgb(187, 218, 226)
+          }
+        }
+
+        &:active{
+          background-color: rgb(28, 28, 29);
+          & > span:nth-child(2){
+            color:rgb(187, 218, 226)
           }
         }
       }
@@ -246,15 +268,14 @@ body{
   .sidebar{
     width: 220px;
 
-    .logo{
-      background-color: white;
-      
+    .logo{      
       .quantiq{
         & > span:nth-child(2){
           display: block;
         }
       }
       .sidebar_toggle{
+        @include flexbox(end, center);
         span{
           transform: rotateY(180deg);
         }

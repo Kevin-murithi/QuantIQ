@@ -29,7 +29,7 @@ body {
   align-items: start;
   flex-direction: column;
   flex-wrap: nowrap;
-  border-right: 1.6px solid rgb(185, 184, 184);
+  background-color: rgb(15, 15, 15);
   transition: 0.15s ease;
   position: relative;
   position: fixed;
@@ -78,6 +78,7 @@ body {
   font-weight: 700;
   margin-left: 0.75rem;
   opacity: 0.8;
+  color: rgb(169, 167, 167);
 }
 @media (max-width: 1040px) {
   .skeleton .sidebar .logo .quantiq > span:nth-child(2) {
@@ -103,7 +104,7 @@ body {
   align-items: center;
   flex-direction: row;
   flex-wrap: nowrap;
-  background-color: white;
+  background-color: rgb(204, 201, 201);
   margin-top: 8px;
   transition: 1s ease;
 }
@@ -115,6 +116,9 @@ body {
 .skeleton .sidebar .logo .sidebar_toggle span img {
   width: 14px;
   opacity: 0.65;
+}
+.skeleton .sidebar .logo .sidebar_toggle span:hover {
+  background-color: aliceblue;
 }
 .skeleton .sidebar .logo .toggle_sidebar {
   width: 32px;
@@ -136,12 +140,12 @@ body {
   align-items: center;
   flex-direction: column;
   flex-wrap: nowrap;
-  padding: 1.8rem 1rem;
+  padding: 1.8rem 0;
   width: 100%;
 }
 .skeleton .sidebar .pages .page_link {
   width: 100%;
-  padding: 1rem 0.25rem;
+  padding: 1rem 1rem;
   display: flex;
   justify-content: start;
   align-items: center;
@@ -157,7 +161,8 @@ body {
 .skeleton .sidebar .pages .page_link > span:nth-child(2) {
   font-size: 0.9rem;
   font-weight: 500;
-  margin-left: 1.6rem;
+  margin-left: 1.25rem;
+  color: rgb(150, 205, 223);
 }
 @media (max-width: 1040px) {
   .skeleton .sidebar .pages .page_link > span:nth-child(2) {
@@ -168,6 +173,18 @@ body {
   .skeleton .sidebar .pages .page_link > span:nth-child(2) {
     font-size: 12px;
   }
+}
+.skeleton .sidebar .pages .page_link:hover {
+  background-color: rgb(28, 28, 29);
+}
+.skeleton .sidebar .pages .page_link:hover > span:nth-child(2) {
+  color: rgb(187, 218, 226);
+}
+.skeleton .sidebar .pages .page_link:active {
+  background-color: rgb(28, 28, 29);
+}
+.skeleton .sidebar .pages .page_link:active > span:nth-child(2) {
+  color: rgb(187, 218, 226);
 }
 .skeleton .parent_container {
   display: flex;
@@ -263,11 +280,15 @@ body {
 .skeleton.active .sidebar {
   width: 220px;
 }
-.skeleton.active .sidebar .logo {
-  background-color: white;
-}
 .skeleton.active .sidebar .logo .quantiq > span:nth-child(2) {
   display: block;
+}
+.skeleton.active .sidebar .logo .sidebar_toggle {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 .skeleton.active .sidebar .logo .sidebar_toggle span {
   transform: rotateY(180deg);
