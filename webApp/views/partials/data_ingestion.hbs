@@ -1,0 +1,84 @@
+<dialog class="modal-content" id="data-ingestion-modal">
+  <div class="modal-header">
+    <h2>Upload Your File(s)</h2>
+    <button class="close-btn" onclick="closeModal()">
+      <img src="assets/icons/close-circle.svg" alt="close-circle">
+    </button>
+  </div>
+
+  <div class="modal-body">
+    <!-- Drag & Drop -->
+    <div class="upload-area" id="upload-area">
+      <div class="reset_box">
+        <button
+          type="button"
+          class="reset_upload_area"
+          id="reset-button"
+          style="display: none;"
+          onclick="resetUploadArea()"
+        >
+          <img src="assets/icons/reset.svg" alt="reset">
+        </button>
+      </div>
+
+      <div class="dynamic_upload_state">
+        <p id="upload-message">Drag & Drop your file(s) here</p>
+        <input
+          type="file"
+          id="file-input"
+          multiple
+          onchange="handleFileSelection(event)"
+          hidden
+        />
+        <button class="browse_local" onclick="document.getElementById('file-input').click()">Browse Files</button>
+      </div>
+    </div>
+
+
+    <div class="or_box">
+      <div></div>
+      <div>or</div>
+      <div></div>
+    </div>
+
+    <!-- Third-Party Services -->
+    <div class="third-party">
+      <h3>Connect to cloud storage</h3>
+
+      <div class="cloud_links">
+        <button class="service-btn google-drive-btn">
+          <img src="assets/icons/google-drive.svg" alt="thirdparty1">
+        </button>
+
+        <button class="service-btn icloud-btn">
+          <img src="assets/icons/icloud.png" alt="thirdparty2">
+        </button>
+
+        <button class="service-btn dropbox-btn">
+          <img src="assets/icons/dropbox.svg" alt="thirdparty3">
+        </button>
+
+        <button class="service-btn one-drive-btn">
+          <img src="assets/icons/onedrive.svg" alt="thirdparty4">
+        </button>
+
+        <button class="service-btn mega-btn">
+          <img src="assets/icons/mega.svg" alt="thirdparty5">
+        </button>
+
+          <button class="service-btn box-btn">
+          <img src="assets/icons/box.svg" alt="thirdparty6">
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-footer">
+    <button class="upload-btn" onclick="uploadFiles()">
+      <span>Upload</span>
+      <img src="assets/icons/upload-2.svg" alt="upload">
+    </button>
+
+    <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+  </div>
+</dialog>

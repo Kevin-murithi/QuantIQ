@@ -5,45 +5,10 @@
     {{>dynamic_head}}
 
     <div class="dynamic_body">
-      <div id="file-manager">
-        <form id="upload-form" method="POST" enctype="multipart/form-data">
-          <input type="file" name="file" id="file-upload" />
-          <button type="submit">Upload</button>
-        </form>
-
-        <div id="files-list">
-          <!-- Dynamically list files -->
-          {{#each files}}
-            <div class="file-item">
-              <span>{{this.name}}</span>
-              <button class="delete-btn" data-id="{{this.id}}">Delete</button>
-              <button class="rename-btn" data-id="{{this.id}}">Rename</button>
-            </div>
-          {{/each}}
-        </div>
-      </div>
+      <button id="open-modal-btn">Upload Data</button>
+      {{>data_ingestion}}
     </div>
   </section>
 </section>
 
-<script src="js/skeleton.js"></script>
-
-<script>
-  document.querySelector('#upload-form').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target);
-    const response = await fetch('/upload', {
-      method: 'POST',
-      body: formData,
-    });
-    // Handle response
-  });
-
-  document.querySelectorAll('.delete-btn').forEach((button) =>
-    button.addEventListener('click', async () => {
-      const fileId = button.dataset.id;
-      await fetch(`/delete/${fileId}`, { method: 'DELETE' });
-      // Refresh file list
-    })
-  );
-</script>
+<script src="js/shared.js"></script>

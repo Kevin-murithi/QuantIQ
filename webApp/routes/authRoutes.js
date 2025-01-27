@@ -35,19 +35,7 @@ router.post('/login', jsonParser, authController.login);
 router.post('/customentries', verifyToken, authController.saveCustomEntry);       // Save a custom entry
 router.get('/customentries/:tenantId', verifyToken, authController.getCustomEntries);
 
-// File_mng_routes
-
-// Authentication routes
-router.get('/google', fileController.googleAuth);
-router.get('/google/callback', fileController.googleCallback);
-router.get('/dropbox', fileController.dropboxAuth);
-router.get('/dropbox/callback', fileController.dropboxCallback);
-
 // File management routes
-router.post('/upload', fileController.uploadFile);
-router.delete('/delete/:fileId', fileController.deleteFile);
-router.put('/rename/:fileId', fileController.renameFile);
-router.get('/files', fileController.listFiles);
-router.post('/folder', fileController.createFolder);
+router.post('/upload', jsonParser, fileController.upload.array('files', 10), fileController.uploadFiles);
 
 module.exports = router;

@@ -330,25 +330,283 @@ body {
   display: block;
 }
 
-#file-manager {
+/* Fade-in animation for dialog */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+/* Fade-in animation for backdrop */
+@keyframes backdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.modal-content {
+  background: rgb(248, 248, 248);
+  border-radius: 10px;
+  padding: 1.4rem 1.2rem;
+  max-width: 500px;
   width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  animation: fadeIn 0.3s ease;
 }
-#file-manager form {
-  margin-bottom: 1rem;
+@media (max-width: 600px) {
+  .modal-content {
+    width: 95%;
+  }
 }
-#file-manager form input[type=file] {
-  margin-right: 1rem;
-}
-#file-manager #files-list {
-  display: flex;
-  flex-direction: column;
-}
-#file-manager #files-list .file-item {
+.modal-content .modal-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 0.5rem;
+  align-items: center;
 }
-#file-manager #files-list .file-item button {
-  margin-left: 0.5rem;
+.modal-content .modal-header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  opacity: 0.8;
+}
+@media (max-width: 600px) {
+  .modal-content .modal-header h2 {
+    font-size: 0.95rem;
+  }
+}
+.modal-content .modal-header .close-btn {
+  background: none;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.modal-content .modal-header .close-btn img {
+  width: 28px;
+  opacity: 0.75;
+  transition: 0.25s ease;
+}
+.modal-content .modal-header .close-btn:hover img {
+  opacity: 1;
+  scale: 1.25;
+}
+.modal-content .modal-body {
+  margin-top: 1rem;
+}
+.modal-content .modal-body .upload-area {
+  border: 2px dashed #b1afaf;
+  background-color: #eae8e8;
+  border-radius: 10px;
+  padding: 0 0 20px 0;
+  cursor: pointer;
+  transition: border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+}
+.modal-content .modal-body .upload-area:hover {
+  border-color: hsl(256, 92%, 65%);
+}
+.modal-content .modal-body .upload-area .reset_box {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+  padding: 0.5rem 0.45rem 0 0;
+}
+.modal-content .modal-body .upload-area .reset_box button {
+  width: 26px;
+  transition: 0.25s ease;
+}
+.modal-content .modal-body .upload-area .reset_box button img {
+  width: 100%;
+  opacity: 0.75;
+}
+.modal-content .modal-body .upload-area .reset_box button:hover {
+  scale: 1.15;
+}
+.modal-content .modal-body .upload-area .reset_box button:hover img {
+  opacity: 1;
+}
+.modal-content .modal-body .upload-area .dynamic_upload_state {
+  width: 100%;
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal-content .modal-body .upload-area .dynamic_upload_state p {
+  opacity: 0.8;
+  font-size: 14px;
+}
+@media (max-width: 600px) {
+  .modal-content .modal-body .upload-area .dynamic_upload_state p {
+    font-size: 12px;
+  }
+}
+.modal-content .modal-body .upload-area .dynamic_upload_state .browse_local {
+  margin-top: 1.25rem;
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.modal-content .modal-body .upload-area .dynamic_upload_state .browse_local:hover {
+  background-color: #4c15e4;
+}
+.modal-content .modal-body .upload-area.dragging {
+  border-color: hsl(256, 92%, 65%);
+  background-color: #f4f4f4;
+}
+.modal-content .modal-body .or_box {
+  display: grid;
+  grid-template-columns: 1fr 2ch 1fr;
+  gap: 1rem;
+  margin-top: 1.55rem;
+}
+.modal-content .modal-body .or_box > div:nth-child(1), .modal-content .modal-body .or_box > div:nth-child(3) {
+  height: 1.6px;
+  background-color: #ccc;
+}
+.modal-content .modal-body .or_box > div:nth-child(2) {
+  font-size: 1.15rem;
+  color: rgb(134, 133, 133);
+  font-weight: 600;
+  margin-top: -1rem;
+}
+@media (max-width: 1040px) {
+  .modal-content .modal-body .or_box > div:nth-child(2) {
+    font-size: 1rem;
+  }
+}
+.modal-content .modal-body .third-party {
+  margin-top: 1.45rem;
+}
+.modal-content .modal-body .third-party h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: 0.75;
+}
+.modal-content .modal-body .third-party .cloud_links {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: start;
+  margin-top: 0.6rem;
+}
+.modal-content .modal-body .third-party .cloud_links .service-btn {
+  display: flex;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 44px;
+  height: 44px;
+  padding: 8px;
+  border: 1.6px solid rgb(222, 220, 220);
+  border-radius: 50%;
+  margin-left: 1rem;
+  transition: 0.25s ease;
+}
+@media (max-width: 600px) {
+  .modal-content .modal-body .third-party .cloud_links .service-btn {
+    margin-left: 0.65rem;
+    padding: 6px;
+    width: 40px;
+    height: 40px;
+  }
+}
+@media (max-width: 330px) {
+  .modal-content .modal-body .third-party .cloud_links .service-btn {
+    margin-left: 0.45rem;
+  }
+}
+.modal-content .modal-body .third-party .cloud_links .service-btn:hover {
+  border: 1.6px solid rgb(173, 171, 171);
+  background-color: #f3f3f3;
+  scale: 1.15;
+}
+.modal-content .modal-body .third-party .cloud_links .service-btn img {
+  width: 100%;
+}
+.modal-content .modal-body .third-party .cloud_links > button:nth-child(1) {
+  margin-left: 0;
+}
+.modal-content .modal-body .third-party .cloud_links > button:nth-child(2) {
+  padding: 0;
+}
+.modal-content .modal-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1.5px solid rgb(221, 219, 219);
+}
+.modal-content .modal-footer .upload-btn {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0dca8e;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+.modal-content .modal-footer .upload-btn:hover {
+  background-color: #4dd5b3;
+}
+.modal-content .modal-footer .upload-btn span {
+  color: rgb(46, 45, 45);
+  font-weight: 600;
+  font-size: 14px;
+}
+.modal-content .modal-footer .upload-btn img {
+  width: 22px;
+  margin: -4px 0 0 1rem;
+}
+@media (max-width: 600px) {
+  .modal-content .modal-footer .upload-btn {
+    padding: 4px 8px;
+  }
+  .modal-content .modal-footer .upload-btn span {
+    font-size: 12px;
+  }
+  .modal-content .modal-footer .upload-btn img {
+    width: 18px;
+    margin: 0 0 0 1rem;
+  }
+}
+.modal-content .modal-footer .cancel-btn {
+  background: none;
+  border: none;
+  font-weight: 600;
+  color: #df215a;
+  transition: 0.25s ease;
+  padding: 5px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.modal-content .modal-footer .cancel-btn:hover {
+  text-decoration: underline;
+}
+.modal-content::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  animation: backdropFade 0.3s ease;
 }
 /*# sourceMappingURL=main.css.map */
