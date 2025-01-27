@@ -1,6 +1,7 @@
 const { Router } = require ('express');
 const authController = require ('../controllers/authController');
 const loadPages = require ('../controllers/loadPages');
+const fileController = require ('../controllers/fileController');
 const { verifyToken } = require('../middleware/authMiddleware');
 
 const router = Router();
@@ -33,5 +34,20 @@ router.post('/login', jsonParser, authController.login);
 
 router.post('/customentries', verifyToken, authController.saveCustomEntry);       // Save a custom entry
 router.get('/customentries/:tenantId', verifyToken, authController.getCustomEntries);
+
+// File_mng_routes
+
+// Authentication routes
+router.get('/google', fileController.googleAuth);
+router.get('/google/callback', fileController.googleCallback);
+router.get('/dropbox', fileController.dropboxAuth);
+router.get('/dropbox/callback', fileController.dropboxCallback);
+
+// File management routes
+router.post('/upload', fileController.uploadFile);
+router.delete('/delete/:fileId', fileController.deleteFile);
+router.put('/rename/:fileId', fileController.renameFile);
+router.get('/files', fileController.listFiles);
+router.post('/folder', fileController.createFolder);
 
 module.exports = router;
