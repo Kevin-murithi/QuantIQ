@@ -226,7 +226,7 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
   width: 100%;
-  padding: 1.25rem 0.75rem 0.45rem 0.75rem;
+  padding: 1.25rem 0.25rem 0.45rem 0.75rem;
   border-bottom: 1.6px solid rgb(236, 236, 236);
   background-color: rgb(239, 243, 250);
   position: fixed;
@@ -264,7 +264,21 @@ body {
   flex-direction: row;
   flex-wrap: nowrap;
 }
+.skeleton .parent_container .dynamic_head .dynamic_profile .bell_box {
+  width: 28px;
+  margin-right: 1.25rem;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .bell_box img {
+  width: 100%;
+}
 .skeleton .parent_container .dynamic_head .dynamic_profile .profile_box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head {
   display: flex;
   justify-content: start;
   align-items: center;
@@ -272,49 +286,145 @@ body {
   flex-wrap: nowrap;
   border: 1.6px solid rgb(206, 206, 206);
   border-radius: 12px;
-  padding: 0.35rem 0.85rem;
+  padding: 0.35rem;
+  margin-right: 0.75rem;
+  background-color: #ccc;
 }
-.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .company_img {
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .company_img {
   width: 30px;
+  border-right: 1.4px solid #808080;
+  padding-right: 0.25rem;
 }
-.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .company_img img {
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .company_img img {
   width: 100%;
   opacity: 0.85;
 }
-.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .profile_brief {
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .profile_brief {
   display: flex;
   justify-content: start;
   align-items: start;
   flex-direction: column;
   flex-wrap: nowrap;
   margin-left: 0.45rem;
+  border-right: 1.4px solid #ccc;
+  padding-right: 0.35rem;
+  display: none;
 }
-.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .profile_brief > div:nth-child(1) {
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .profile_brief > div:nth-child(1) {
   font-size: 12px;
   font-weight: 700;
   opacity: 0.9;
 }
-.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .profile_brief > div:nth-child(2) {
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .profile_brief > div:nth-child(2) {
   font-size: 10px;
   font-weight: 600;
   opacity: 0.9;
 }
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .drop_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 26px;
+  margin-left: 0.25rem;
+  opacity: 0.8;
+  transition: 0.15s ease;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .drop_container img {
+  width: 100%;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .drop_container:hover {
+  opacity: 1;
+  cursor: pointer;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .dropdown-btn.spin {
+  transform: rotateX(180deg);
+}
 @media (max-width: 600px) {
-  .skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .company_img {
+  .skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-head .company_img {
     width: 28px;
   }
-  .skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .profile_brief > div:nth-child(1) {
-    font-size: 10px;
-  }
-  .skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .profile_brief > div:nth-child(2) {
-    font-size: 8px;
-  }
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal {
+  border: 1.6px solid #a3a3a3;
+  background-color: #f3f3f3;
+  border-radius: 10px;
+  padding: 0.8rem 0.5rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 150px;
+  position: absolute;
+  top: 5rem;
+  right: 0.85rem;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .mobile-credentials {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  width: 100%;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .mobile-credentials > div:nth-child(1) {
+  font-size: 14px;
+  font-weight: 600;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .mobile-credentials > div:nth-child(2) {
+  font-size: 12px;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .logout_box {
+  width: 100%;
+  margin-top: 1rem;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .logout_box a {
+  width: 130px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  border-radius: 10px;
+  padding: 0.45rem 1rem;
+  margin: 0 auto;
+  background-color: #cccaca;
+  border: 1.6px solid rgb(15, 15, 15);
+  transition: 0.2s ease;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .logout_box a img {
+  transition: 0.2s ease;
+  width: 24px;
+  opacity: 0.85;
+  height: 24px;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .logout_box a span {
+  transition: 0.2s ease;
+  font-size: 14px;
+  color: rgb(32, 32, 32);
+  font-weight: 600;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .logout_box a:hover {
+  background-color: rgb(15, 15, 15);
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .logout_box a:hover img {
+  opacity: 1;
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .p-box-reveal .logout_box a:hover span {
+  font-size: 14px;
+  color: rgb(235, 231, 231);
+}
+.skeleton .parent_container .dynamic_head .dynamic_profile .profile_box .hidden {
+  display: none;
 }
 .skeleton .parent_container .dynamic_body {
   background-color: rgb(248, 248, 248);
   width: 100%;
   height: 100%;
-  margin-top: 4.8rem;
+  margin-top: 4.2rem;
+  padding: 1rem 0.5rem;
 }
 
 .skeleton.active .sidebar {
