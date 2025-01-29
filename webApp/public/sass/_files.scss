@@ -1,0 +1,313 @@
+/* Fade-in animation for dialog */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Fade-in animation for backdrop */
+@keyframes backdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.modal-content {
+  background: rgb(248, 248, 248);
+  border-radius: 10px;
+  padding: 1.4rem 1.2rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  margin: auto;
+  animation: fadeIn 0.3s ease;
+
+  @media(max-width: 600px){
+    width: 95%;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      opacity: .8;
+
+      @media(max-width: 600px){
+        font-size: .95rem;
+      }
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+
+      img{
+        width: 28px;
+        opacity: .75;
+        transition: .25s ease;
+      }
+
+      &:hover{
+        img{
+          opacity: 1;
+          scale: 1.25;
+        }
+      }
+    }
+  }
+
+  .modal-body {
+    margin-top: 1rem;
+    
+    .upload-area {
+      border: 2px dashed #b1afaf;
+      background-color: #eae8e8;
+      border-radius: 10px;
+      padding: 0 0 20px 0;
+      cursor: pointer;
+      transition: border-color 0.3s;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+
+      &:hover {
+        border-color: hsl(256, 92%, 65%);
+      }
+
+      .reset_box{
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 100%;
+        padding: .5rem .45rem 0 0;
+
+        button{
+          width: 26px;
+          transition: .25s ease;
+
+          img{
+            width: 100%;
+            opacity: .75;
+          }
+
+          &:hover{
+            scale: 1.15;
+
+            img{
+              opacity: 1;
+            }
+          }
+        }
+      }
+
+      .dynamic_upload_state{
+        width: 100%;
+        margin-top: 1.25rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+        p{
+          opacity: .8;
+          font-size: 14px;
+  
+          @media(max-width: 600px){
+            font-size: 12px;
+          }
+        }
+  
+        .browse_local {
+          margin-top: 1.25rem;;
+          padding: 5px 10px;
+          background-color: #007bff;
+          color: #fff;
+          font-size: 12px;
+          font-weight: 600;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s;
+  
+          &:hover {
+            background-color: #4c15e4;
+          }
+        }
+      }
+    }
+
+    .upload-area.dragging {
+      border-color: hsl(256, 92%, 65%);
+      background-color: #f4f4f4;
+    }
+
+    .or_box{
+      display: grid;
+      grid-template-columns: 1fr 2ch 1fr;
+      gap: 1rem;
+      margin-top: 1.55rem;
+
+      & > div:nth-child(1), & > div:nth-child(3){
+        height: 1.6px;
+        background-color: #ccc;
+      }
+
+      & > div:nth-child(2){
+        font-size: 1.15rem;
+        color: rgb(134, 133, 133);
+        font-weight: 600;
+        margin-top: -1rem;
+
+        @media(max-width: 1040px){
+          font-size: 1rem;
+        }
+      }
+    }
+
+    .third-party {
+      margin-top: 1.45rem;
+
+      h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        opacity: .75;
+      }
+
+      .cloud_links{
+        width: 100%;
+        display: flex; 
+        align-items: center;
+        flex-direction: row;
+        justify-content: start;
+        margin-top: .6rem;
+
+        .service-btn {
+          display: flex;
+          cursor: pointer;
+          transition: background-color 0.3s;
+          width: 44px;
+          height: 44px;
+          padding: 8px;
+          border: 1.6px solid rgb(222, 220, 220);
+          border-radius: 50%;
+          margin-left: 1rem;
+          transition: .25s ease;
+
+          @media(max-width: 600px){
+            margin-left: .65rem;
+            padding: 6px;
+            width: 40px;
+            height: 40px;
+          }
+          @media(max-width: 330px){
+            margin-left: .45rem;
+          }
+
+          &:hover{
+            border: 1.6px solid rgb(173, 171, 171);
+            background-color: #f3f3f3;
+            scale: 1.15;
+          }
+
+          img{
+            width: 100%;
+          }
+        }
+
+        & > button:nth-child(1){
+          margin-left: 0;
+        }
+
+        & > button:nth-child(2){
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .modal-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1.5px solid rgb(221, 219, 219);
+
+    .upload-btn {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #0dca8e;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.25s ease;
+
+      &:hover {
+        background-color: #4dd5b3;
+      }
+
+      span{
+        color: rgb(46, 45, 45);
+        font-weight: 600;
+        font-size: 14px;
+      }
+      img{
+        width: 22px;
+        margin: -4px 0 0 1rem;
+      }
+
+      @media(max-width: 600px){
+        padding: 4px 8px;
+
+        span{
+          font-size: 12px;
+        }
+
+        img{
+          width: 18px;
+          margin: 0 0 0 1rem;
+        }
+      }
+    }
+
+    .cancel-btn {
+      background: none;
+      border: none;
+      font-weight: 600;
+      color: #df215a;
+      transition: 0.25s ease;
+      padding: 5px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &::backdrop {
+    background: rgba(0, 0, 0, 0.5); 
+    backdrop-filter: blur(2px);
+    animation: backdropFade 0.3s ease;
+  }
+}

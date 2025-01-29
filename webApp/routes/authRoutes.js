@@ -1,6 +1,7 @@
 const { Router } = require ('express');
 const authController = require ('../controllers/authController');
 const loadPages = require ('../controllers/loadPages');
+const fileController = require ('../controllers/fileController');
 const { verifyToken } = require('../middleware/authMiddleware');
 
 const router = Router();
@@ -33,5 +34,8 @@ router.post('/login', jsonParser, authController.login);
 
 router.post('/customentries', verifyToken, authController.saveCustomEntry);       // Save a custom entry
 router.get('/customentries/:tenantId', verifyToken, authController.getCustomEntries);
+
+// File management routes
+router.post('/upload', jsonParser, fileController.upload.array('files', 10), fileController.uploadFiles);
 
 module.exports = router;
