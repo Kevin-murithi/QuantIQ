@@ -464,6 +464,8 @@ body {
 .skeleton.active .sidebar .pages .page_link > span:nth-child(2) {
   display: block;
 }
+<<<<<<< HEAD
+=======
 
 /* Fade-in animation for dialog */
 @keyframes fadeIn {
@@ -744,4 +746,5 @@ body {
   backdrop-filter: blur(2px);
   animation: backdropFade 0.3s ease;
 }
+>>>>>>> 9a41b59551b11f79924a06c230941a2aa5eb69aa
 /*# sourceMappingURL=main.css.map */
