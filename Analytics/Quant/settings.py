@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
+    'rest_framework',
+    'django_filters',
+    'quant_logic'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +52,17 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_RENDERER_CLASSES': [
+        'rest_framework.renderers.JSONRenderer',
+    ],
+    'DEFAULT_PARSER_CLASSES': [
+        'rest_framework.parsers.JSONParser',
+    ]
+}
+
+
 
 ROOT_URLCONF = "Quant.urls"
 
@@ -72,11 +87,14 @@ WSGI_APPLICATION = "Quant.wsgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default' : {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'quantDB', #this
+        'USER': 'root', # adjust this
+        'PASSWORD': '2003',
+        'HOST': 'localhost',
+        'PORT' : '3306',
     }
 }
 
